@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>Login - Home Heaven</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .login-container {
+      max-width: 440px;
+      width: 100%;
+    }
+
+    .login-card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+
+    .login-header {
+      background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+      padding: 40px 32px;
+      text-align: center;
+      color: white;
+    }
+
+    .logo-icon {
+      width: 72px;
+      height: 72px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 36px;
+      backdrop-filter: blur(10px);
+    }
+
+    .login-header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .login-header p {
+      font-size: 15px;
+      opacity: 0.9;
+    }
+
+    .login-body {
+      padding: 40px 32px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #737373;
+      font-size: 16px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 14px 16px 14px 48px;
+      border: 1.5px solid #e5e5e5;
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #dc2626;
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+    }
+
+    .form-input:focus + .input-icon {
+      color: #dc2626;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(220, 38, 38, 0.3);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .links {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .links a {
+      color: #dc2626;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .links a:hover {
+      color: #b91c1c;
+      text-decoration: underline;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 24px 0;
+      color: #737373;
+      font-size: 14px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e5e5e5;
+    }
+
+    .divider::before {
+      margin-right: 12px;
+    }
+
+    .divider::after {
+      margin-left: 12px;
+    }
+
+    .register-link {
+      text-align: center;
+      padding: 24px 32px;
+      background: #fafafa;
+      border-top: 1px solid #e5e5e5;
+      font-size: 14px;
+      color: #525252;
+    }
+
+    .register-link a {
+      color: #dc2626;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .register-link a:hover {
+      text-decoration: underline;
+    }
+
+    .message {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .message.error {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .message.success {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #86efac;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="logo-icon">
+          <i class="fa-solid fa-house"></i>
+        </div>
+        <h1>Welcome Back</h1>
+        <p>Sign in to your HomeHeaven account</p>
+      </div>
+
+      <div class="login-body">
+        <form id="loginForm">
+          <div class="form-group">
+            <label class="form-label">Username</label>
+            <div class="input-wrapper">
+              <input type="text" name="username" class="form-input" placeholder="Enter your username" required>
+              <i class="fa-solid fa-user input-icon"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <div class="input-wrapper">
+              <input type="password" name="password" class="form-input" placeholder="Enter your password" required>
+              <i class="fa-solid fa-lock input-icon"></i>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            Sign In
+          </button>
+
+          <div id="msg" class="message"></div>
+
+          <div class="links">
+            <a href="/forgot-password.html">
+              <i class="fa-solid fa-key"></i> Forgot Password?
+            </a>
+          </div>
+        </form>
+      </div>
+
+      <div class="register-link">
+        Don't have an account? <a href="/register.html">Create one now</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').onsubmit = async (e) => {
+      e.preventDefault();
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const msgDiv = document.getElementById('msg');
+      
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Signing in...';
+      msgDiv.style.display = 'none';
+
+      const data = new FormData(e.target);
+      const body = {
+        username: data.get('username'),
+        password: data.get('password')
+      };
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+
+        if (res.ok) {
+          const response = await res.json();
+          
+          // Store JWT token and user info in localStorage
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('username', response.username);
+          localStorage.setItem('email', response.email);
+          
+          msgDiv.className = 'message success';
+          msgDiv.innerHTML = '<i class="fa-solid fa-circle-check"></i> Login successful! Redirecting...';
+          msgDiv.style.display = 'flex';
+          setTimeout(() => window.location = '/dashboard.html', 1000);
+        } else {
+          const t = await res.text();
+          msgDiv.className = 'message error';
+          msgDiv.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> ' + t;
+          msgDiv.style.display = 'flex';
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Sign In';
+        }
+      } catch (err) {
+        msgDiv.className = 'message error';
+        msgDiv.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Connection error. Please try again.';
+        msgDiv.style.display = 'flex';
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Sign In';
+      }
+    };
+  </script>
+</body>
+</html>
